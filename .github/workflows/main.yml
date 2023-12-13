@@ -1,0 +1,9 @@
+name: Manual trigger
+on: 
+  workflow_dispatch: 
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      -run: npm cypress run
+         
