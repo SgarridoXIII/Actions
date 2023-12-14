@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
-    runs-on: -latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
