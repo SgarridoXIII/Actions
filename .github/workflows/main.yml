@@ -1,20 +1,9 @@
 name: Manual trigger
-
 on:
   workflow_dispatch:
-    inputs:
-      test-type:
-        description: 'Tipo de prueba a ejecutar'
-        required: true
-        default: 'cypress-chrome-test'
-        options:
-          - 'cypress-chrome-test'
-          - 'cypress-electron-test'
-
 jobs:
   cypress-chrome-test:
     runs-on: windows-latest
-    if: ${{ github.event.inputs.test-type == 'cypress-chrome-test' }}
 
     steps:
       - name: Checkout
@@ -31,29 +20,8 @@ jobs:
       - name: Instalar Cypress
         run: npm install cypress --save-dev
 
-      - name: Ejecutar pruebas en Chrome
+      - name: Ejecutar pruebas
         run: npx cypress run --browser chrome
-
-  cypress-electron-test:
-    runs-on: windows-latest
-    if: ${{ github.event.inputs.test-type == 'cypress-electron-test' }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4.1.1
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4.0.0
-        with:
-          node-version: 18.13.0
-
-      - name: Instalar dependencias
-        run: npm install
-
-      - name: Instalar Cypress
-        run: npm install cypress --save-dev
-
-      - name: Ejecutar pruebas en Electron
-        run: npx cypress run --browser electron
+       
 
 
