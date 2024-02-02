@@ -1,6 +1,8 @@
 name: Manual trigger
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [dependency_update]
 jobs:
   cypress-chrome-test:
     runs-on: windows-latest
